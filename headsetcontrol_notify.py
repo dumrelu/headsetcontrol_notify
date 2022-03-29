@@ -4,7 +4,7 @@ import subprocess
 from sys import stderr
 
 # The battery percentage after which the script sends notifications
-BATTERY_PERCENTAGE_NOTIFICATION_THRESHOLD = 20
+LOW_BATTERY_THRESHOLD = 20
 
 def run_process(command):
     '''
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     print(f"Battery status: {percentage_string}. Parsed values: battery_charging={battery_charging}, battery_percentage={battery_percentage}")
 
     # If the headset is not charging and the battery percentage is lower than the threshold, we send a notification
-    if not battery_charging and battery_percentage < BATTERY_PERCENTAGE_NOTIFICATION_THRESHOLD:
+    if not battery_charging and battery_percentage < LOW_BATTERY_THRESHOLD:
         message = f"{headset_name}: {battery_percentage} remaining!"
 
         run_process(["notify-send", "-t", "10000", "-i", "emblem-warning", message])
