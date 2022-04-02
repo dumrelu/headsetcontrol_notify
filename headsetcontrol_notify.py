@@ -18,7 +18,7 @@ def run_process(command):
 
 if __name__ == "__main__":
     # Run the headsetcontrol utility
-    exit_code, stdout, stderr = run_process(["headsetcontrol", "-b"])
+    exit_code, stdout, stderr = run_process(["/usr/local/bin/headsetcontrol", "-b"])
     stdout_lines = stdout.split('\n')
 
     if exit_code != 0:
@@ -46,5 +46,5 @@ if __name__ == "__main__":
     if not battery_charging and battery_percentage < LOW_BATTERY_THRESHOLD:
         message = f"{headset_name}: {battery_percentage} remaining!"
 
-        run_process(["notify-send", "-t", "10000", "-i", "emblem-warning", message])
+        run_process(["/usr/bin/notify-send", "-t", "10000", "-i", "emblem-warning", message])
     
